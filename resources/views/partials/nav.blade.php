@@ -14,6 +14,9 @@
                     <ul class="p-2">
                         <li><a href="{{route('posts.index')}}">Posts</a></li>
                     </ul>
+                    <ul class="p-2">
+                        <li><a href="{{route('profiles.index')}}">Profiles</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -28,6 +31,9 @@
                         <summary>Admin</summary>
                         <ul class="p-2">
                             <li><a href="{{route('posts.index')}}">Posts</a></li>
+                        </ul>
+                        <ul class="p-2">
+                            <li><a href="{{route('profiles.index')}}">Profiles</a></li>
                         </ul>
                     </details>
                 </li>
