@@ -1,19 +1,26 @@
 @if ($paginator->hasPages())
-    <nav>
-        <ul class="pagination">
-            {{-- Previous Page Link --}}
+    <div class="flex justify-center">
+        <div class="join my-4">
             @if ($paginator->onFirstPage())
-                <li class="disabled" aria-disabled="true"><span>@lang('pagination.previous')</span></li>
+                <button aria-hidden="true" class="join-item btn btn-disabled" aria-disabled="true"
+                    aria-label="@lang('pagination.previous')">«</button>
             @else
-                <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a></li>
+                <a class="join-item btn" href="{{ $paginator->previousPageUrl() }}" rel="prev"
+                    aria-label="@lang('pagination.previous')">«</a>
             @endif
 
-            {{-- Next Page Link --}}
+            <button class="join-item btn no-animation">Page {{ $paginator->currentPage() }}</button>
+
+
+            {{-- Since paginator lastPage funct not working in simplePaginate it's not possible to implement the last page button--}}
+
             @if ($paginator->hasMorePages())
-                <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">@lang('pagination.next')</a></li>
+                <a class="join-item btn" href="{{ $paginator->nextPageUrl() }}" rel="next"
+                    aria-label="@lang('pagination.next')">»</a>
             @else
-                <li class="disabled" aria-disabled="true"><span>@lang('pagination.next')</span></li>
+                <button class="join-item btn btn-disabled" aria-hidden="true" class="disabled" aria-disabled="true"
+                    aria-label="@lang('pagination.next')">»</button>
             @endif
-        </ul>
-    </nav>
+        </div>
+    </div>
 @endif
