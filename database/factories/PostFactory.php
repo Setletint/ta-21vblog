@@ -18,15 +18,20 @@ class PostFactory extends Factory
     {
         $created = fake()->dateTimeBetween();
         $updated = $created;
+        $image = fake()->imageUrl();
         if(!rand(0,9)){
             $updated = fake()->dateTimeBetween($created);
+            $image = null;
         }
+
+
 
         return [
             'title' => fake()->sentence(),
             'body' => fake()->paragraphs(3, true),
             'created_at' => $created,
             'updated_at' => $updated,
+            'image'      => $image,
         ];
     }
 }

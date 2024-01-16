@@ -11,10 +11,8 @@
                 <li><a href="{{route('home')}}">Home</a></li>
                 <li>
                     <a>Admin</a>
-                    <ul class="p-2">
+                    <ul class="p-2 z-10">
                         <li><a href="{{route('posts.index')}}">Posts</a></li>
-                    </ul>
-                    <ul class="p-2">
                         <li><a href="{{route('profiles.index')}}">Profiles</a></li>
                     </ul>
                 </li>
@@ -26,13 +24,11 @@
         <ul class="menu menu-horizontal px-1">
             <li><a href="{{route('home')}}">Home</a></li>
             @auth
-                <li tabindex="0">
+                <li tabindex="0" class="z-10">
                     <details>
                         <summary>Admin</summary>
                         <ul class="p-2">
                             <li><a href="{{route('posts.index')}}">Posts</a></li>
-                        </ul>
-                        <ul class="p-2">
                             <li><a href="{{route('profiles.index')}}">Profiles</a></li>
                         </ul>
                     </details>
@@ -46,7 +42,7 @@
             <a class="btn btn-primary ml-3" href="{{route('register')}}">Register</a>
         @else
             <ul class="menu menu-horizontal px-1">
-                <li tabindex="0">
+                <li tabindex="0" class="z-10">
                     <details>
                         <summary>{{auth()->user()->name}}</summary>
                         <ul class="p-2">

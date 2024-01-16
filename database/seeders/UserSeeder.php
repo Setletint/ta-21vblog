@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'password' => env('DEFAULT_USER_PASSWORD_HASH', bcrypt('password'))
         ]);
 
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(20)->create();
 
 
     }

@@ -18,4 +18,8 @@ class Post extends Model
             return substr($this->body, 0, 200);
         });
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
