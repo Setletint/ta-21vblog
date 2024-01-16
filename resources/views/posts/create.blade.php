@@ -4,12 +4,11 @@
     <div class="container mx-auto">
         <div class="card bg-base-200 shadow-xl">
             <div class="card-body">
-                <form action="{{route('posts.store')}}" method="POST">
+                <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-control w-full">
                         <label class="label">
                           <span class="label-text">Title</span>
-
                         </label>
                         <input type="text" placeholder="Title" class="input input-bordered w-full" name="title" value="{{old('title')}}" />
                         @error('title')
@@ -29,6 +28,19 @@
                             </label>
                         @enderror
                       </div>
+
+                      <div class="form-control w-full">
+                        <label class="label">
+                          <span class="label-text">Image</span>
+                        </label>
+                        <input type="file" placeholder="Name" class="file-input input-bordered w-full" name="image" />
+                        @error('image')
+                            <label class="label">
+                                <span class="label-text-alt text-error">{{$message}}</span>
+                            </label>
+                        @enderror
+                      </div>
+
                       <input type="submit" class="btn btn-primary my-3" value="Create">
                 </form>
             </div>

@@ -10,7 +10,7 @@
                     <div class="card bg-base-200 shadow-xl min-h-full mx-2">
                         @if($post->image)
                         <figure>
-                            <img src="{{$post->image}}" alt="{{$post->title}}" />
+                            <img src="{{$post->image->path}}" alt="{{$post->title}}" />
                         </figure>
                         @endif
                         <div class="card-body">
