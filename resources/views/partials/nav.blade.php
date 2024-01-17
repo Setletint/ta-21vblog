@@ -13,7 +13,6 @@
                     <a>Admin</a>
                     <ul class="p-2 z-10">
                         <li><a href="{{route('posts.index')}}">Posts</a></li>
-                        <li><a href="{{route('profiles.index')}}">Profiles</a></li>
                     </ul>
                 </li>
             </ul>
@@ -29,7 +28,6 @@
                         <summary>Admin</summary>
                         <ul class="p-2">
                             <li><a href="{{route('posts.index')}}">Posts</a></li>
-                            <li><a href="{{route('profiles.index')}}">Profiles</a></li>
                         </ul>
                     </details>
                 </li>
@@ -46,6 +44,7 @@
                     <details>
                         <summary>{{auth()->user()->name}}</summary>
                         <ul class="p-2">
+                            <li><a href="{{route('profile.edit')}}">Edit profile</a></li>
                             <li>
                                 <form action="{{route('logout')}}" method="POST">
                                     @csrf

@@ -21,8 +21,8 @@ class ProfileController extends Controller
 
      public function index()
      {
-        $profiles = User::latest()->paginate();
-        return view('profiles.index', compact('profiles'));
+        $profile = Auth::user();
+        return view('profile.index', compact('profile'));
      }
 
 
