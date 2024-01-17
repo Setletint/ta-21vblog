@@ -12,6 +12,6 @@ Migrate and seed database with `php artisan migrate:fresh --seed`
 To serve the project, enter these 2 commands without stopping command execution<br />
 `php artisan serve` & `npm run dev`
 
-# Made with
+# Made using
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel"></a></p>
 <p align="center"><a href="https://daisyui.com/" target="_blank"><img src="https://raw.githubusercontent.com/saadeghi/daisyui/master/src/docs/static/images/daisyui-logo/favicon-192.png" alt="DaisyUI"></a></p>
