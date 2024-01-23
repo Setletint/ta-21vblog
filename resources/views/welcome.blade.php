@@ -13,7 +13,7 @@
                                 <img src="{{ $post->images->first()->path }}" alt="{{ $post->title }}" />
                             </figure>
                         @elseif($post->images()->count() > 1)
-                            <div class="w-64 carousel rounded-box">
+                            <div class="w-full carousel rounded-box">
                                 @foreach ($post->images as $image)
                                         <div class="carousel-item w-full">
                                             <img src="{{ $image->path }}" class="w-full" alt="{{$image->title}}" />
@@ -27,7 +27,7 @@
                             <p class="text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
                             <p class="text-gray-500">{{ $post->user->name }}</p>
                             <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Buy Now</button>
+                                <a class="btn btn-primary" href={{route('post',['post'=>$post])}}>Read More</a>
                             </div>
                         </div>
                     </div>
