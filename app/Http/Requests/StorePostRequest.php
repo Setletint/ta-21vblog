@@ -24,7 +24,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => 'required',
             'body' => 'required',
-            'image' => 'nullable|image',
+            'images.*' => 'nullable|image',
         ];
     }
 }

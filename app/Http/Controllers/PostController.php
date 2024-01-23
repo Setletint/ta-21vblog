@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -14,8 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-       $posts = Post::latest()->paginate();
-       return view('posts.index', compact('posts'));
+        $posts = Post::latest()->paginate();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -34,9 +35,16 @@ class PostController extends Controller
         $post = new Post($request->validated());
         // $post->title = $request->validated('title');
         // $post->body = $request->validated('body');
-        $post->image = $request->file('image')->store('public');
+        //$post->image = $request->file('image')->store('public');
         $post->user()->associate(auth()->user());
         $post->save();
+        //dd($request->files);
+        foreach ($request->file('images') as $file) {
+            $image = new Image();
+            $image->path = $file;
+            $image->post()->associate($post);
+            $image->save();
+        }
         return redirect()->route('posts.index');
     }
 

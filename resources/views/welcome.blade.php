@@ -2,16 +2,24 @@
 
 @section('content')
     <div class="container mx-auto">
-        {{$posts->links()}}
+        {{ $posts->links() }}
         <div class="flex flex-row flex-wrap">
-            @foreach($posts as $post)
+            @foreach ($posts as $post)
                 <div class="basis-1/4 mb-2">
 
                     <div class="card bg-base-200 shadow-xl min-h-full mx-2">
-                        @if($post->image)
-                        <figure>
-                            <img src="{{$post->image->path}}" alt="{{$post->title}}" />
-                        </figure>
+                        @if ($post->images()->count() === 1)
+                            <figure>
+                                <img src="{{ $post->images->first()->path }}" alt="{{ $post->title }}" />
+                            </figure>
+                        @elseif($post->images()->count() > 1)
+                            <div class="w-64 carousel rounded-box">
+                                @foreach ($post->images as $image)
+                                        <div class="carousel-item w-full">
+                                            <img src="{{ $image->path }}" class="w-full" alt="{{$image->title}}" />
+                                        </div>
+                                @endforeach
+                            </div>
                         @endif
                         <div class="card-body">
                             <h2 class="card-title">{{ $post->title }}</h2>

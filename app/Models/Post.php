@@ -29,27 +29,10 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function image(){
-        return $this->hasOne(Image::class);
+    public function images(){
+        return $this->hasMany(Image::class);
     }
 
 
-   /* public function image(): Attribute
-    {
-        return Attribute::make(
-            get: function ($image) {
-                if (!$image || parse_url($image, PHP_URL_SCHEME)) {
-                    return $image;
-                }
-                return Storage::url($image);
-            },
-            set: function ($image) {
-                if (!$image || !is_a($image, UploadedFile::class)) {
-                    return $image;
-                }
-                return request()->file('image')->store('public');
-            }
-        );
-    }
-    */
+
 }
