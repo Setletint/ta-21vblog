@@ -6,7 +6,7 @@ Install laravel dep. packages using <a href="https://getcomposer.org/">composer<
 Install daisyUi packages using <a href="https://www.npmjs.com/">npm</a> with `npm i`<br />
 Create .env file using [example](https://github.com/Setletint/ta-21vblog/blob/main/.env.example) <br />
 Create public storage symbolic link by `php artisan storage:link`<br />
-Migrate and seed database with `php artisan migrate:fresh --seed`
+Migrate and seed database with `php artisan migrate:fresh --seed`<br />
 Generate a key with `php artisan key:generate`
 
 # Serving
