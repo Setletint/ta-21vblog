@@ -7,6 +7,7 @@ Install daisyUi packages using <a href="https://www.npmjs.com/">npm</a> with `np
 Create .env file using [example](https://github.com/Setletint/ta-21vblog/blob/main/.env.example) <br />
 Create public storage symbolic link by `php artisan storage:link`<br />
 Migrate and seed database with `php artisan migrate:fresh --seed`
+Generate a key with `php artisan key:generate`
 
 # Serving
 To serve the project, enter these 2 commands without stopping command execution<br />
