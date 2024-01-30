@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -55,9 +57,18 @@ class User extends Authenticatable
     }
 
     public function followers(){
-        return $this->belongsToMany(User::class, 'users', 'follower_id')->using(Follow::class);
+        return $this->belongsToMany(User::class, 'follows', 'followee_id', 'follower_id')->using(Follow::class);
     }
     public function followees(){
-        return $this->belongsToMany(User::class, 'users', 'folowee_id')->using(Follow::class);
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followee_id')->using(Follow::class);
+    }
+    public function authHasFollowed(): Attribute
+    {
+        return Attribute::get(function () {
+            if (Auth::check()) {
+                return $this->followers()->where('follows.follower_id', Auth::user()->id)->exists();
+            }
+            return false;
+        });
     }
 }

@@ -1,7 +1,25 @@
 @extends('partials.layout')
 
 @section('content')
-    <div class="container mx-auto">
+    <div class='container mx-auto'>
+        <div class="card bg-base-200 shadow-xl min-h-full mb-6">
+            <div class="card-body">
+                <h2 class="card-title">{{ $user->name }}</h2>
+                <p>Followers: {{ $user->followers->count() }}</p>
+                <p>Following: {{ $user->followees->count() }}</p>
+                <a href="{{route('follow', ['user' => $user])}}">
+                @if ($user->authHasFollowed)
+                    <button class="btn btn-error">Unfollow</button>
+                @else
+                    <button class="btn btn-primary">Follow</button>
+                @endif
+                </a>
+            </div>
+        </div>
+
+
+
+
         {{ $posts->links() }}
         <div class="flex flex-row flex-wrap">
             @foreach ($posts as $post)
@@ -43,6 +61,6 @@
                 </div>
             @endforeach
         </div>
-
+    </div>
     </div>
 @endsection

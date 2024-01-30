@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -13,6 +14,11 @@ class PublicController extends Controller
     {
         $posts = Post::latest()->paginate(16);
         //dd($posts->toArray());
+        return view('welcome', compact('posts'));
+    }
+
+    public function feed(){
+        $posts = Post::whereIn('user_id', auth()->user()->followees->pluck('id')->toArray())->latest()->paginate(16);
         return view('welcome', compact('posts'));
     }
 
@@ -44,5 +50,19 @@ class PublicController extends Controller
         return redirect()->back();
     }
 
+    public function user(User $user){
+        $posts = Post::latest()->where('user_id', $user->id)->paginate(16);
+        return view('user', compact('user', 'posts'));
+    }
+    public function follow(User $user)
+    {
+       if (!$user->authHasFollowed) {
+            $user->followers()->attach(auth()->user());
+        }else{
+
+            $user->followers()->detach(auth()->user());
+        }
+        return redirect()->back();
+    }
 
 }
