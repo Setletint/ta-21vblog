@@ -15,9 +15,9 @@
                         @elseif($post->images()->count() > 1)
                             <div class="w-full carousel rounded-box">
                                 @foreach ($post->images as $image)
-                                        <div class="carousel-item w-full">
-                                            <img src="{{ $image->path }}" class="w-full" alt="{{$image->title}}" />
-                                        </div>
+                                    <div class="carousel-item w-full">
+                                        <img src="{{ $image->path }}" class="w-full" alt="{{ $image->title }}" />
+                                    </div>
                                 @endforeach
                             </div>
                         @endif
@@ -28,8 +28,14 @@
                             <p class="text-gray-500">{{ $post->user->name }}</p>
                             <p class="text-red-500">{{ $post->likes()->count() }} Likes</p>
                             <div class="card-actions justify-end">
-                                <a class="btn btn-primary" href={{route('like',['post'=>$post])}}>Like</a>
-                                <a class="btn btn-primary" href={{route('post',['post'=>$post])}}>Read More</a>
+                                <a class="btn {{$post->authHasLiked ? 'btn-primary' : 'btn-success'}}" href={{ route('like', ['post' => $post]) }}>
+                                    @if ($post->authHasLiked)
+                                        Unlike
+                                    @else
+                                        Like
+                                    @endif
+                                </a>
+                                <a class="btn btn-primary" href={{ route('post', ['post' => $post]) }}>Read More</a>
                             </div>
                         </div>
                     </div>
