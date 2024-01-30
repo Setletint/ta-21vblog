@@ -51,7 +51,8 @@ class PublicController extends Controller
     }
 
     public function user(User $user){
-        $posts = Post::latest()->where('user_id', $user->id)->paginate(16);
+        //$posts = Post::latest()->where('user_id', $user->id)->paginate(16);
+        $posts = $user->posts()->latest()->paginate(16);
         return view('user', compact('user', 'posts'));
     }
     public function follow(User $user)
