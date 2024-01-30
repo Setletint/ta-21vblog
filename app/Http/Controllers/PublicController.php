@@ -18,7 +18,7 @@ class PublicController extends Controller
     }
 
     public function feed(){
-        $posts = Post::whereIn('user_id', auth()->user()->followees->pluck('id')->toArray())->latest()->paginate(16);
+        $posts = Post::whereIn('user_id', auth()->user()->followees->pluck('id')->toArray())->withCount('likes')->orderBy('likes_count', 'desc')->paginate(16);
         return view('welcome', compact('posts'));
     }
 
