@@ -15,14 +15,14 @@ class FollowSeeder extends Seeder
     public function run(): void
     {
         $users = User::all();
-        foreach ($users as $user) {
-            $randUsers = $users->random(rand(0, $users->count()));
-            foreach ($randUsers as $randUser) {
-                if ($randUser === $user) {
-                    // Prevents from following yourself
-                    continue;
+        foreach($users as $user) {
+            $randUsers = $users->random(rand(0,$users->count()));
+            foreach($randUsers as $randUser) {
+                if($randUser === $user){
+                    continue; // don't follow yourself
                 }
-                Follow::factory()->create(['follower_id' => $randUser->id, 'followee_id' => $user->id]);
+                $user->followers()->attach($randUser);
+                //Follow::factory()->create(['follower_id' => $randUser->id, 'followee_id' => $user->id]);
             }
         }
     }

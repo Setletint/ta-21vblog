@@ -8,6 +8,7 @@ use App\Models\Image;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -53,5 +54,9 @@ class Post extends Model
             }
             return false;
         });
+    }
+
+    public function tags() : BelongsToMany{
+        return $this->belongsToMany(Tag::class);
     }
 }

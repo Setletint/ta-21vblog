@@ -21,7 +21,9 @@ Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/feed', [PublicController::class, 'feed'])->name('feed');
 Route::get('/post/{post}', [PublicController::class, 'post'])->name('post');
 
+
 Route::get('/user/{user}', [PublicController::class, 'user'])->name('user');
+Route::get('/tag/{tag}', [PublicController::class, 'tag'])->name('tag');
 
 
 

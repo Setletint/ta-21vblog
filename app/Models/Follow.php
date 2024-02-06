@@ -10,5 +10,5 @@ class Follow extends Pivot
 {
     use HasFactory;
 
-
+    public $incrementing = true;
 }

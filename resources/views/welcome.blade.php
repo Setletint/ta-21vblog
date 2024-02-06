@@ -25,10 +25,17 @@
                             <h2 class="card-title">{{ $post->title }}</h2>
                             <p>{{ $post->snippet }}...</p>
                             <p class="text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
-                            <p class="text-gray-500"><a href="{{ route('user', ['user' => $post->user->id])}}">{{ $post->user->name }}</a></p>
+                            <p class="text-gray-500"><a
+                                    href="{{ route('user', ['user' => $post->user->id]) }}">{{ $post->user->name }}</a></p>
                             <p class="text-red-500">{{ $post->likes()->count() }} Likes</p>
+                            <div class="flex flex-wrap">
+                                @foreach ($post->tags as $tag)
+                                    <a href="{{route('tag', ['tag'=>$tag])}}"><div class="badge badge-outline ml-1 mb-1">{{$tag->name}}</div></a>
+                                @endforeach
+                            </div>
                             <div class="card-actions justify-end">
-                                <a class="btn {{$post->authHasLiked ? 'btn-primary' : 'btn-success'}}" href={{ route('like', ['post' => $post]) }}>
+                                <a class="btn {{ $post->authHasLiked ? 'btn-primary' : 'btn-success' }}"
+                                    href={{ route('like', ['post' => $post]) }}>
                                     @if ($post->authHasLiked)
                                         Unlike
                                     @else

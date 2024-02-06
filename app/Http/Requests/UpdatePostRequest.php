@@ -23,7 +23,8 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            //'tags.*' => 'exists:tags,id',
         ];
     }
 }

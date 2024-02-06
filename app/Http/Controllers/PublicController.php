@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -66,4 +67,8 @@ class PublicController extends Controller
         return redirect()->back();
     }
 
+    public function tag(Tag $tag){
+        $posts = $tag->posts()->latest()->paginate(16);
+        return view('welcome', compact('posts'));
+    }
 }

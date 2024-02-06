@@ -6,6 +6,7 @@ use App\Models\Image;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Tag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends Controller
@@ -24,8 +25,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $tags = Tag::all();
+        return view('posts.create', compact('tags'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -45,6 +48,9 @@ class PostController extends Controller
             $image->post()->associate($post);
             $image->save();
         }
+        foreach($request->validated('tags') as $tagId){
+            $post->tags()->attach($tagId);
+        }
         return redirect()->route('posts.index');
     }
 
@@ -61,7 +67,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $tags = Tag::all();
+        return view('posts.edit', compact('post','tags'));
     }
 
     /**
