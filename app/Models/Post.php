@@ -19,6 +19,8 @@ class Post extends Model
 
     protected $fillable = ['title', 'body'];
 
+    protected $appends = ['snippet'];
+
     public function snippet(): Attribute
     {
         return Attribute::get(function () {
