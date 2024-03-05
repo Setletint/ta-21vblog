@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\PublicController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/public', [PublicController::class, 'index']);
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
